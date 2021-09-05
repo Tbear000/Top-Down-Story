@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Dialogue/NPC.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Player/Chara01.png" type="Texture" id=2]
+[ext_resource path="res://Dialogue/Dialogue.cs" type="Script" id=3]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 3 )
+isPopup = false
+Lines = [ "Welcome! you must be Dick's grandson.", "Nice to meet you Eli, I'm Uma. Your grandfather was a close friend of mine. I'm so sorry for your loss.", "Well hopefully things get better from here Hun." ]
+Replies = [ "That's me! My name's Eli.", "Nice to meet you too. Thank you, that means a lot to hear. He was a pretty big part of my childhood so this has been a pretty rough couple of weeks.", "Thanks Uma. I'll keep in touch." ]
+NPCName = "Uma"
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 0, 16, 20 )
+
+[node name="TestWoman" instance=ExtResource( 1 )]
+conversation = SubResource( 1 )
+
+[node name="Sprite" parent="." index="1"]
+texture = SubResource( 2 )

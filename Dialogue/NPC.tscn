@@ -1,0 +1,97 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Dialogue/NPC.cs" type="Script" id=1]
+[ext_resource path="res://Dialogue/Dialogue.cs" type="Script" id=2]
+[ext_resource path="res://Dialogue/bubble emotes july update.png" type="Texture" id=3]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 2 )
+isPopup = false
+Lines = null
+Replies = null
+NPCName = null
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 2.34888
+height = 14.2117
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 14.0257
+
+[sub_resource type="Animation" id=4]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Popup:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 149, 149, 148, 147, 146, 145, 144 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Close"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Popup:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 144, 145, 146, 147, 148, 149, 150 ]
+}
+
+[sub_resource type="Animation" id=6]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Popup:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 150 ]
+}
+
+[node name="NPC" type="KinematicBody2D"]
+script = ExtResource( 1 )
+conversation = SubResource( 1 )
+
+[node name="Popup" type="Sprite" parent="."]
+position = Vector2( 0, -28.3422 )
+texture = ExtResource( 3 )
+hframes = 12
+vframes = 13
+frame = 150
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -9.92188 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 0, -0.376039 )
+shape = SubResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Disabled"
+anims/Active = SubResource( 4 )
+anims/Close = SubResource( 5 )
+anims/Disabled = SubResource( 6 )
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
