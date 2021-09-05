@@ -1,8 +1,11 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Player/Player.cs" type="Script" id=1]
 [ext_resource path="res://Player/Chara01.png" type="Texture" id=2]
 [ext_resource path="res://Inventory/Items/Item_RedApple.tscn" type="PackedScene" id=3]
+[ext_resource path="res://StateMachine/StateMachine.cs" type="Script" id=4]
+[ext_resource path="res://StateMachine/States/Walk.cs" type="Script" id=5]
+[ext_resource path="res://StateMachine/States/DialogueState.cs" type="Script" id=6]
 [ext_resource path="res://Inventory/Scenes/InventoryComponent.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Inventory/Scenes/InventoryUI.tscn" type="PackedScene" id=10]
 
@@ -16,59 +19,59 @@ region = Rect2( 0, 0, 16, 20 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 2 )
-region = Rect2( 0, 20, 16, 20 )
+region = Rect2( 0, 0, 16, 20 )
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 2 )
-region = Rect2( 0, 20, 16, 20 )
+region = Rect2( 16, 0, 16, 20 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 2 )
-region = Rect2( 16, 20, 16, 20 )
+region = Rect2( 32, 0, 16, 20 )
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 2 )
-region = Rect2( 32, 20, 16, 20 )
+region = Rect2( 48, 0, 16, 20 )
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 2 )
-region = Rect2( 48, 20, 16, 20 )
+region = Rect2( 0, 20, 16, 20 )
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 16, 20 )
+region = Rect2( 0, 60, 16, 20 )
 
 [sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 2 )
-region = Rect2( 16, 0, 16, 20 )
+region = Rect2( 0, 20, 16, 20 )
 
 [sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 2 )
-region = Rect2( 32, 0, 16, 20 )
+region = Rect2( 16, 20, 16, 20 )
 
 [sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 2 )
-region = Rect2( 48, 0, 16, 20 )
+region = Rect2( 32, 20, 16, 20 )
 
 [sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 2 )
-region = Rect2( 0, 60, 16, 20 )
+region = Rect2( 48, 20, 16, 20 )
 
 [sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 2 )
-region = Rect2( 16, 60, 16, 20 )
+region = Rect2( 0, 60, 16, 20 )
 
 [sub_resource type="AtlasTexture" id=14]
 atlas = ExtResource( 2 )
-region = Rect2( 32, 60, 16, 20 )
+region = Rect2( 16, 60, 16, 20 )
 
 [sub_resource type="AtlasTexture" id=15]
 atlas = ExtResource( 2 )
-region = Rect2( 48, 60, 16, 20 )
+region = Rect2( 32, 60, 16, 20 )
 
 [sub_resource type="AtlasTexture" id=16]
 atlas = ExtResource( 2 )
-region = Rect2( 0, 60, 16, 20 )
+region = Rect2( 48, 60, 16, 20 )
 
 [sub_resource type="SpriteFrames" id=17]
 animations = [ {
@@ -77,30 +80,30 @@ animations = [ {
 "name": "Idle Down",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 3 ) ],
-"loop": true,
-"name": "Idle Side",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
-"loop": true,
-"name": "Walk Side",
-"speed": 8.0
-}, {
-"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
 "loop": true,
 "name": "Walk Down",
 "speed": 8.0
 }, {
-"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
+"frames": [ SubResource( 7 ) ],
 "loop": true,
-"name": "Walk Up",
-"speed": 8.0
+"name": "Idle Side",
+"speed": 5.0
 }, {
-"frames": [ SubResource( 16 ) ],
+"frames": [ SubResource( 8 ) ],
 "loop": true,
 "name": "Idle Up",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"loop": true,
+"name": "Walk Side",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
+"loop": true,
+"name": "Walk Up",
+"speed": 8.0
 } ]
 
 [sub_resource type="CircleShape2D" id=18]
@@ -141,6 +144,16 @@ margin_bottom = 580.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 18 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 4 )
+InitialState = NodePath("Walk")
+
+[node name="Walk" type="Node" parent="StateMachine"]
+script = ExtResource( 5 )
+
+[node name="Dialogue" type="Node" parent="StateMachine"]
+script = ExtResource( 6 )
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]

@@ -95,5 +95,5 @@ PlayerSpawnLocation = Vector2( 48, -70 )
 conversation = SubResource( 1 )
 
 [node name="Brass-Key" parent="YSort" instance=ExtResource( 8 )]
-position = Vector2( 258.81, -210.512 )
+position = Vector2( -214.869, -917.663 )
 script = ExtResource( 12 )

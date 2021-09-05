@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class DialogueManager : CanvasLayer //Auto-load
 {
+    private int WordSpeed = 25;
     private Tween tween;
     //UI Reference
     private NinePatchRect DialogueBox;
@@ -48,7 +49,7 @@ public class DialogueManager : CanvasLayer //Auto-load
                 InDialogue = true;
                 PopUpBox.Visible = true;
                 PopUpText.PercentVisible = 0;
-                tween.InterpolateProperty(PopUpText, "percent_visible", 0, 1, dialogue.Lines[0].Length/20, Tween.TransitionType.Linear, Tween.EaseType.Out);
+                tween.InterpolateProperty(PopUpText, "percent_visible", 0, 1, dialogue.Lines[0].Length/15, Tween.TransitionType.Linear, Tween.EaseType.Out);
                 PopUpText.Text = dialogue.Lines[0];
                 tween.Start();
                 ++CurrentLine;
@@ -62,7 +63,7 @@ public class DialogueManager : CanvasLayer //Auto-load
                     ReplyBox.Visible = true;
                 }
                 DialogueText.PercentVisible = 0;
-                tween.InterpolateProperty(DialogueText, "percent_visible", 0, 1, dialogue.Lines[0].Length/20, Tween.TransitionType.Linear, Tween.EaseType.Out);
+                tween.InterpolateProperty(DialogueText, "percent_visible", 0, 1, dialogue.Lines[0].Length/WordSpeed, Tween.TransitionType.Linear, Tween.EaseType.Out);
                 DialogueText.Text = dialogue.Lines[0];
                 tween.Start();
                 InDialogue = true;
@@ -79,7 +80,7 @@ public class DialogueManager : CanvasLayer //Auto-load
             if(dialogue.isPopup){
                 if(CurrentLine < dialogue.Lines.Count){
                     PopUpText.PercentVisible = 0;
-                    tween.InterpolateProperty(PopUpText, "percent_visible", 0, 1, dialogue.Lines[CurrentLine].Length/20, Tween.TransitionType.Linear, Tween.EaseType.Out);
+                    tween.InterpolateProperty(PopUpText, "percent_visible", 0, 1, dialogue.Lines[CurrentLine].Length/WordSpeed, Tween.TransitionType.Linear, Tween.EaseType.Out);
                     PopUpText.Text = dialogue.Lines[CurrentLine];
                     tween.Start();
                     ++CurrentLine;
@@ -92,7 +93,7 @@ public class DialogueManager : CanvasLayer //Auto-load
             } else {
                 if(dialogue.Replies != null && Talking){
                     ReplyText.PercentVisible = 0;
-                    tween.InterpolateProperty(ReplyText, "percent_visible", 0, 1, dialogue.Lines[CurrentLine].Length/20, Tween.TransitionType.Linear, Tween.EaseType.Out);
+                    tween.InterpolateProperty(ReplyText, "percent_visible", 0, 1, dialogue.Lines[CurrentLine].Length/WordSpeed, Tween.TransitionType.Linear, Tween.EaseType.Out);
                     ReplyText.Text = dialogue.Replies[CurrentLine];
                     tween.Start();
                     Talking = false;
@@ -100,13 +101,13 @@ public class DialogueManager : CanvasLayer //Auto-load
                 } else if(dialogue.Replies == null && CurrentLine < dialogue.Lines.Count){
                     Talking = false;
                     DialogueText.PercentVisible = 0;
-                    tween.InterpolateProperty(DialogueText, "percent_visible", 0, 1, dialogue.Lines[CurrentLine].Length/20, Tween.TransitionType.Linear, Tween.EaseType.Out);
+                    tween.InterpolateProperty(DialogueText, "percent_visible", 0, 1, dialogue.Lines[CurrentLine].Length/WordSpeed, Tween.TransitionType.Linear, Tween.EaseType.Out);
                     DialogueText.Text = dialogue.Lines[CurrentLine];
                     tween.Start();
                     ++CurrentLine;
                 } else if(CurrentLine < dialogue.Lines.Count && !Talking){
                     DialogueText.PercentVisible = 0;
-                    tween.InterpolateProperty(DialogueText, "percent_visible", 0, 1, dialogue.Lines[CurrentLine].Length/20, Tween.TransitionType.Linear, Tween.EaseType.Out);
+                    tween.InterpolateProperty(DialogueText, "percent_visible", 0, 1, dialogue.Lines[CurrentLine].Length/WordSpeed, Tween.TransitionType.Linear, Tween.EaseType.Out);
                     DialogueText.Text = dialogue.Lines[CurrentLine];
                     tween.Start();
                     Talking = true;

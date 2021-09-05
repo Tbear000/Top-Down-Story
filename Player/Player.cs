@@ -6,16 +6,19 @@ public class Player : KinematicBody2D
     [Export]
     public int Speed;
     public Vector2 Velocity = Vector2.Zero;
-    private AnimatedSprite sprite;
+    public AnimatedSprite sprite;
 
     //Inventory Resources
     public VBoxContainer InventoryUi;
 	public InventoryComponent inventory;
 	private Godot.Collections.Array<Interactable> WorldItems = new Godot.Collections.Array<Interactable>();
 
+    public StateMachine _stateMachine;
+
 
     public override void _Ready()
     {
+        _stateMachine = GetNode<StateMachine>("StateMachine");
         sprite = GetNode<AnimatedSprite>("AnimatedSprite");
         InventoryUi = GetNode<VBoxContainer>("UI/Inventory");
 		inventory = GetNode<InventoryComponent>("InventoryComponent");
@@ -32,12 +35,15 @@ public class Player : KinematicBody2D
 
     public override void _Process(float delta)
     {
+        InteractWithWorld();
+    }
+
+    public void MovePlayer(float delta)
+    {
         Velocity.x = (Input.GetActionStrength("ui_right") - Input.GetActionStrength("ui_left")) * Speed;
         Velocity.y = (Input.GetActionStrength("ui_down") - Input.GetActionStrength("ui_up")) * Speed;
-
-        ChangeSprite();
         Velocity = MoveAndSlide(Velocity);
-        InteractWithWorld();
+        ChangeSprite();
     }
 
     private void ChangeSprite()
