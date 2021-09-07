@@ -109,7 +109,7 @@ position = Vector2( -214.869, -917.663 )
 script = ExtResource( 12 )
 
 [node name="TestWoman" parent="YSort" instance=ExtResource( 9 )]
-position = Vector2( 256.618, -221.127 )
+position = Vector2( 91.8622, 32.7244 )
 
 [node name="Portals" type="Node2D" parent="."]
 
