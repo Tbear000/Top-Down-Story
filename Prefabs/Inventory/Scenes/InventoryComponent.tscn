@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Prefabs/Inventory/Scenes/InventoryWindow.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Prefabs/Inventory/Scripts/InventoryComponent.cs" type="Script" id=2]
+
+[node name="InventoryComponent" type="Node"]
+pause_mode = 2
+script = ExtResource( 2 )
+InvName = ""
+NumberOfSlots = 1
+WindowScene = ExtResource( 1 )

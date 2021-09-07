@@ -1,0 +1,23 @@
+[gd_scene format=2]
+
+[node name="Popup" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -624.0
+margin_bottom = -540.0
+rect_min_size = Vector2( 400, 60 )
+hint_tooltip = "tooltip"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "jhgfjhgfjhgfjhgfhjgfjhgfjhghgfjhgf"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
