@@ -1,7 +1,24 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Prefabs/SceneTransitions/LockedPortalArea.cs" type="Script" id=1]
 [ext_resource path="res://Prefabs/SceneTransitions/PortalArea.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Prefabs/Dialogue/Dialogue.cs" type="Script" id=3]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 3 )
+isPopup = true
+Lines = [ "It's locked, I can't go in there." ]
+Replies = null
+NPCName = null
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 3 )
+isPopup = true
+Lines = [ "The brass key fit into this lock!" ]
+Replies = [  ]
+NPCName = null
 
 [node name="LockedPortalArea" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
+lockedconversation = SubResource( 1 )
+Unlocked = SubResource( 2 )

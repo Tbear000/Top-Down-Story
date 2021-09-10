@@ -18,10 +18,10 @@ public class Player : KinematicBody2D
 
     public override void _Ready()
     {
+        inventory = GetNode<InventoryComponent>("InventoryComponent");
         _stateMachine = GetNode<StateMachine>("StateMachine");
         sprite = GetNode<AnimatedSprite>("AnimatedSprite");
         InventoryUi = GetNode<VBoxContainer>("UI/Inventory");
-		inventory = GetNode<InventoryComponent>("InventoryComponent");
         if(Global.PlayerInitialMapPosition != Vector2.Zero){
             this.GlobalPosition = Global.PlayerInitialMapPosition;
         }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Levels/Tilesets/InteriorTilesets/InteriorWallsTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Levels/Tilesets/Interior_16x.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Prefabs/SceneTransitions/PortalArea.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Prefabs/Inventory/Interactables/InteractablePopUp.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Prefabs/Dialogue/Dialogue.cs" type="Script" id=8]
+[ext_resource path="res://Prefabs/Inventory/Interactables/Chest.tscn" type="PackedScene" id=9]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 22.1025, 16, 22.3816, 16, 32, 0, 32 )
@@ -1357,6 +1358,9 @@ tile_data = PoolIntArray( -983046, 51, 0, -983042, 21, 0, -1048576, 39, 0, -1048
 
 [node name="Player" parent="YSort" instance=ExtResource( 5 )]
 position = Vector2( 47.448, -56.0699 )
+
+[node name="Chest" parent="YSort" instance=ExtResource( 9 )]
+position = Vector2( 148.167, -15.3506 )
 
 [node name="PortalArea" parent="." instance=ExtResource( 6 )]
 position = Vector2( 47.4119, -54.0015 )

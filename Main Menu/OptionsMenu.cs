@@ -11,7 +11,11 @@ public class OptionsMenu : Control
     }
     public override void _Process(float delta)
     {
-        AudioManager.MusicVolume = (float)Settings.GetNode<HSlider>("MusicVolume/HSlider").Value;
+        if(!Settings.GetNode<CheckBox>("Music/CheckBox").Pressed){
+            AudioManager.MusicVolume = (float)Settings.GetNode<HSlider>("MusicVolume/HSlider").Value;
+        } else {
+            AudioManager.MusicPlayer.Stop();
+        }
     }
 
     public void OnBackButtonPressed()

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Prefabs/Dialogue/NPC.tscn" type="PackedScene" id=1]
+[ext_resource path="res://NPCs/NPC.tscn" type="PackedScene" id=1]
 [ext_resource path="res://NPCs/MinnieSpriteSheet.png" type="Texture" id=2]
 [ext_resource path="res://Prefabs/Dialogue/Dialogue.cs" type="Script" id=3]
+[ext_resource path="res://NPCs/SoundEffects/Pattern 1_4.wav" type="AudioStream" id=5]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 3 )
@@ -10,8 +11,10 @@ isPopup = false
 Lines = [ "Please leave me. I'm trying to find where I dropped my keys." ]
 Replies = [ "Oh okay.  Sorry.." ]
 NPCName = "Uma"
+SoundEffect = ExtResource( 5 )
 
 [node name="Uma" instance=ExtResource( 1 )]
+position = Vector2( 180.759, 109.407 )
 conversation = SubResource( 1 )
 
 [node name="Sprite" parent="." index="1"]
@@ -22,6 +25,6 @@ vframes = 22
 
 [node name="Timer" type="Timer" parent="." index="5"]
 wait_time = 7.0
-autostart = true
+one_shot = true
 
 [connection signal="timeout" from="Timer" to="." method="GeneratePath"]

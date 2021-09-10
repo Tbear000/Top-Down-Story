@@ -18,7 +18,8 @@ config/icon="res://icon.png"
 [autoload]
 
 DialogueManager="*res://Prefabs/Dialogue/DialogueManager.tscn"
-Global="*res://Global.cs"
+Global="*res://Global.tscn"
+AudioManager="*res://Prefabs/AudioManager/AudioManager.tscn"
 
 [display]
 

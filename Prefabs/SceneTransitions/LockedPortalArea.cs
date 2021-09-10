@@ -5,7 +5,12 @@ public class LockedPortalArea : PortalArea
 {
     [Export(PropertyHint.ResourceType)]
     public Dialogue lockedconversation = new Dialogue();
+
+    [Export(PropertyHint.ResourceType)]
+    public Dialogue Unlocked = new Dialogue();
     public DialogueManager dialogueManager;
+
+    private bool locked = true;
 
     public override void _Ready()
     {
@@ -14,12 +19,16 @@ public class LockedPortalArea : PortalArea
     }
     public override void Interact()
     {
-        if(player != null && player.inventory.InvQuery("Brass Key", 1) != -1){
-            //player.inventory.UseItemAtSlot(player.inventory.InvQuery("Brass Key", 1));
+        if(player.inventory.InvQuery("Brass Key", 1) == -1 && locked){
+            dialogueManager.ShowDialogue(lockedconversation);
+        } else if (player.inventory.InvQuery("Brass Key", 1) != -1 && locked){
+            dialogueManager.ShowDialogue(Unlocked);
+            if(!DialogueManager.InDialogue){
+                locked = false;
+            }
+        } else if (!locked){
             Global.PlayerInitialMapPosition = PlayerSpawnLocation;
 		    GetTree().ChangeScene(NextScenePath);
-        } else {
-            dialogueManager.ShowDialogue(lockedconversation);
         }
     }
 }

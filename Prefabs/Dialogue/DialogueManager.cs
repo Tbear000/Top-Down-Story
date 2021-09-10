@@ -52,6 +52,7 @@ public class DialogueManager : CanvasLayer //Auto-load
                 tween.InterpolateProperty(PopUpText, "percent_visible", 0, 1, dialogue.Lines[0].Length/15, Tween.TransitionType.Linear, Tween.EaseType.Out);
                 PopUpText.Text = dialogue.Lines[0];
                 tween.Start();
+                PlaySound();
                 ++CurrentLine;
             } else {
                 DialogueName.Text = dialogue.NPCName;
@@ -66,6 +67,7 @@ public class DialogueManager : CanvasLayer //Auto-load
                 tween.InterpolateProperty(DialogueText, "percent_visible", 0, 1, dialogue.Lines[0].Length/WordSpeed, Tween.TransitionType.Linear, Tween.EaseType.Out);
                 DialogueText.Text = dialogue.Lines[0];
                 tween.Start();
+                PlaySound();
                 InDialogue = true;
                 Talking = true;
             }
@@ -83,6 +85,7 @@ public class DialogueManager : CanvasLayer //Auto-load
                     tween.InterpolateProperty(PopUpText, "percent_visible", 0, 1, dialogue.Lines[CurrentLine].Length/WordSpeed, Tween.TransitionType.Linear, Tween.EaseType.Out);
                     PopUpText.Text = dialogue.Lines[CurrentLine];
                     tween.Start();
+                    PlaySound();
                     ++CurrentLine;
                 } else {
                     PopUpText.Text = "";
@@ -104,12 +107,14 @@ public class DialogueManager : CanvasLayer //Auto-load
                     tween.InterpolateProperty(DialogueText, "percent_visible", 0, 1, dialogue.Lines[CurrentLine].Length/WordSpeed, Tween.TransitionType.Linear, Tween.EaseType.Out);
                     DialogueText.Text = dialogue.Lines[CurrentLine];
                     tween.Start();
+                    PlaySound();
                     ++CurrentLine;
                 } else if(CurrentLine < dialogue.Lines.Count && !Talking){
                     DialogueText.PercentVisible = 0;
                     tween.InterpolateProperty(DialogueText, "percent_visible", 0, 1, dialogue.Lines[CurrentLine].Length/WordSpeed, Tween.TransitionType.Linear, Tween.EaseType.Out);
                     DialogueText.Text = dialogue.Lines[CurrentLine];
                     tween.Start();
+                    PlaySound();
                     Talking = true;
                 } else {
                     CurrentLine = 0;
@@ -118,6 +123,13 @@ public class DialogueManager : CanvasLayer //Auto-load
                     ReplyBox.Visible = false;
                 }
             }
+        }
+    }
+
+    private void PlaySound()
+    {
+        if(dialogue.SoundEffect != null){
+            AudioManager.Play(dialogue.SoundEffect);
         }
     }
 }

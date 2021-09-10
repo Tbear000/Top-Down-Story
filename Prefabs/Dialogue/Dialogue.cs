@@ -12,6 +12,8 @@ public class Dialogue : Resource
     public List<string> Replies;
     [Export]
     public string NPCName;
+    [Export]
+    public AudioStream SoundEffect;
 
     // public Dialogue(bool ispopup = false, List<string> lines = null, List<string> replies = null, string npcname = "")
     // {

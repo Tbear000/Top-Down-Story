@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
-isPopup = false
-Lines = [  ]
+isPopup = true
+Lines = [ "Wonder what this unlocks. Better start testing it on everything." ]
 Replies = null
 NPCName = null

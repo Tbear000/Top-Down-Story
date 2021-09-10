@@ -3,10 +3,9 @@ using System;
 
 public class MainMenu : Control
 {
-    [Export]
-    public String LevelToLoad = "";
 
     private Control OptionsMenu;
+
 
     public override void _Ready()
     {
@@ -18,8 +17,7 @@ public class MainMenu : Control
 
     public void _on_NewGameButton_pressed()
     {
-      
-		  GetTree().ChangeScene(LevelToLoad);
+		  GetTree().ChangeScene(Global.CurrentScene);
     }
     public void _on_QuitButton_pressed()
     {
