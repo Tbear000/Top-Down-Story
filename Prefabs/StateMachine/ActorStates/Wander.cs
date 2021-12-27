@@ -22,7 +22,7 @@ public class Wander : ActorState
 	{
         if(_actor.Velocity == Vector2.Zero && _actor.timer.TimeLeft == 0){
             _actor.timer.Start(randomNumberGenerator.RandfRange(5,10));
-            GD.Print(_actor.timer.TimeLeft);
+            // GD.Print(_actor.timer.TimeLeft);
         }
         _actor.MoveActor();
         _actor.Navigate();
